@@ -1,88 +1,83 @@
-\documentclass[twoside]{report}
-\usepackage[table]{xcolor}
-\usepackage[paper=letterpaper,left=3cm,right=3cm,top=3cm,bottom=2cm,includefoot]{geometry}
-\usepackage{fancyhdr}
-\usepackage{tabularx}
-\usepackage{multirow}
-\usepackage[colorlinks]{hyperref}
-\usepackage{hhline}
-\usepackage{amsmath}
-\usepackage{enumitem}
-\setenumerate{itemsep=-3pt,topsep=3pt}
-\setdescription{itemsep=-3pt,topsep=3pt,leftmargin=!,labelwidth=4.5cm}
-\usepackage{pgfgantt}
-\usepackage{graphicx}   \graphicspath{{./img/} {./tex/img/}}
-\usepackage{amsfonts}
-\usepackage[spanish]{babel}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{listings}
-\def\code#1{\texttt{#1}}
+\documentclass{article}
+%\usepackage[spanish]{babel} 
+%\selectlanguage{english}  
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc} 
+\usepackage{array}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+\usepackage{amsmath, amsthm, amsfonts} 
+\usepackage{graphicx} 
+\usepackage[colorinlistoftodos]{todonotes} 
+\usepackage[colorlinks=true, allcolors=blue]{hyperref} 
+\usepackage[square,numbers]{natbib}
+\usepackage{upgreek}
+\usepackage{lipsum}  
 
-% insertar codigo en documento latex
-\usepackage{minted}
-\definecolor{LightGray}{gray}{0.92}
-\newminted{python}{ linenos,breaklines,mathescape,texcomments,xleftmargin=\parindent, numbersep=8pt,  bgcolor=LightGray
+\title{Informe de Laboratorio Grupo Bacan } 
+\author{Benjam\'in Ayala Baeza  \\ \href{mailto:beayala2021@udec.cl}{beayala2021@udec.cl} 
+        \and Mar\'ia Ignacia Espinoza Inzunza \\ \href{mailto:marespinoza2021@udec.cl}{marespinoza2021@udec.cl} \\
+        \and Florencia Fuentes Jara \\ \href{mailto:flofuentes2021@udec.cl}{flofuentes2021@udec.cl} \\
+        \and Mart\'in Sepulveda Zu\~niga \\ \href{mailto:msepulveda2021@udec.cl}{msepulveda2021@udec.cl} \\
+\date{Universidad de Concepci\'on \\ \today}
 }
-\renewcommand\listingscaption{C\'odigo}
-
-
-% bibliografia: descomente estas dos lineas para usar estilo numerico, e.g. [1].
-%\usepackage[square,numbers,sort&compress]{natbib}
-%\bibliographystyle{apsrev4-1}
-
-% bibliografia: descomente estas dos lineas para usar estilo autor-año, e.g. (Navarro, 2022).
-\usepackage[authoryear]{natbib}
-\bibliographystyle{aipauth4-1}
-
-
-% subfiles permite que el documento sea modular
-\usepackage{subfiles} 
-
-%%% Comente/Descomente las siguientes lineas para cambiar la fuente del texto
-% \usepackage{DejaVuSans}
-% \renewcommand*\familydefault{\sfdefault}
-% \usepackage{sansmath}
-% \sansmath
-
-
-
-\pagestyle{fancy}
-\renewcommand{\footrulewidth}{0.4pt}
-\renewcommand{\headrulewidth}{0.4pt}
-\fancyfoot{}
-\fancyfoot[RE,RO]{\thepage}
-\fancyhead[LO,LE]{\textcolor[RGB]{127,127,127}{Portafolio - Física Computacional II (2022)}} 
-
-\definecolor{tcc}{RGB}{217,217,217} % Table cell color
-
-\renewcommand\tabularxcolumn[1]{m{#1}}
-\setlength{\arrayrulewidth}{0.5pt}
-\renewcommand{\arraystretch}{2}
-
-%\renewcommand{\thesection}{\alph{section})}
-%\renewcommand{\thesubsection}{\alph{section}.\arabic{subsection}}
-
+\setlength{\marginparwidth}{2cm}
 \begin{document}
+\maketitle
 
-\subfile{portada}
+\begin{abstract}
+En el presente documento expondremos la relación entre la fuerza dependiente de la distancia y el giro de un cuerpo. Trataremos este sistema con su variable dependiente 
+\end{abstract}
+
+\section{Introducción} \label{intro}
+ A lo largo de este informe expondremos nuestros procedimiento, resultados y análisis para nuestro proyecto de laboratorio del curso Laboratorio I haciendo uso de los conocimientos adquiridos durante el curso.\\
+ Nuestra premisa para este experimento consta de estudiar de una manera eficaz los efectos de la aplicación de una fuerza tangencial a un objeto que posee una capacidad de rotación. Basaremos nuestro estudio sobre el fenómeno del torque y del momento angular (juntos con su conservación) y como este ultimo principio no es tan efectivo ante las condiciones definidas en la literatura. Tal como veremos en nuestro experimento, notaremos que las condiciones representadas en las ecuaciones y los libros son bastante lejanas a las condiciones que veremos en la practica, esto nos obliga a trabajar con margenes de error, ajustes para los datos de forma que podamos estudiar la tendencia teórica con la practica. 
+\section{Objetivos}
+Nuestros objetivos a lograr con esta actividad de laboratorio son :
+
+\begin{itemize}
+    \item Encontrar a wallie
+    \item Salvar al mundo del calentamiento global 
+
+\end{itemize}
+
+ \section{Experimentación}
+Para encontrar la correlación entre distancia y cantidad de vueltas, debemos repetir el experimento en diversas condiciones. Nuestra condición variable corresponde a la distancia desde la cual veremos como afecta la fuerza con la cual la cinta métrica se cierra.
+    \subsection{Materiales}
+    En este proyecto utilizamos los siguientes instrumentos:
+    \begin{itemize}
+        \item Cinta Métrica 3m
+        \item Papel con ejes de referencia
+        \item Cinta adhesiva
+        \item Celular con cámara lenta
+    \end{itemize}
+    \subsection{Procedimiento}
+    A continuación describiremos detalladamente el paso a paso realizado para las diversas mediciones hechas:
+        \begin{enumerate}
+            \item Comenzamos colocando la cinta métrica al centro del papel con ejes de referencia, de forma que si extendemos la cinta métrica esta crece a lo largo del eje de las ordenadas. La cinta métrica y debe estar pegada al papel, esto lo logramos usando la cinta adhesiva.
+            \item Alineamos en nuestra mesa el papel con ejes de referencia y proyectamos estos ejes en la mesa, de forma que tengamos una extensión de estos para observar cuanto gira el montaje de la cinta métrica con el papel. 
+            \item Posicionamos nuestro celular con cámara lenta por encima del montaje del papel, mesa y cinta de forma que tengamos una visión área del sistema.
+            \item Tomamos el comienzo de la cinta métrica y extendemos hasta llegar a los $10 [cm]$, soltamos la cinta y vemos cuanto gira. Todo este proceso mientras grabamos. 
+            \item Repetimos el paso 4. veinte veces y anotamos los resultados.
+            \item Repetimos todo el procedimiento para la medida de la cinta métrica igual a 20 [cm], 30 [cm], 40 [cm], 50 [cm], 60 [cm], 70 [cm], 80 [cm], 90 [cm] y 100 [cm].
+            
+        \end{enumerate}
 
 
-\tableofcontents
+
+\section{Resultados}
+
+\section{Análisis}
 
 
-
-%%% con \subfile se incluyen archivos externos
-\subfile{introduccion}
-
-\chapter{No se que titulo pondremos}  % cuerpo del portafolio
-\subfile{}
-
-\subfile{conclusion}
+\section{Conclusión}
 
 
-% lista de referencias guardadas en referencias.bib
-\bibliographystyle{amsplain}
-\bibliography{referencias}
-
+\bibliographystyle{apalike}
+\bibliography{Informe/referencias.bib}
 \end{document}
