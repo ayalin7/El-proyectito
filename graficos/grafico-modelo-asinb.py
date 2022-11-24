@@ -15,7 +15,7 @@ err_long = [0.05]*10
 fig, (ax1, ax2) = plt.subplots(1, 2, constrained_layout=True, figsize=(12,6))
 
 #---grafico-experimental----------------------------------------------
-ax1.errorbar(long, ang, xerr=err_long,  yerr=err_ang, marker='o', color='royalblue', label='datos experimentales')
+ax1.errorbar(long, ang, xerr=err_long,  yerr=err_ang, fmt='o', color='royalblue', label='datos experimentales')
 ax1.grid(True)
 ax1.hlines(360, 0, 120, color='red', label='un giro completo', linestyle='--')
 ax1.hlines(720, 0, 120, color='darkred', label='dos giros completos', linestyle='--')
