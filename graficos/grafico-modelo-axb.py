@@ -12,7 +12,7 @@ long = arange(10,110,10)
 err_long = [0.05]*10
 
 #---subplots----------------------------------------------------------
-fig, (ax1, ax2) = plt.subplots(1, 2, constrained_layout=True, figsize=(14,7))
+fig, (ax1, ax2) = plt.subplots(1, 2, constrained_layout=True, figsize=(12,6))
 
 #---grafico-experimental----------------------------------------------
 ax1.errorbar(long, ang, xerr=err_long,  yerr=err_ang, fmt='o', color='royalblue', label='datos experimentales')
@@ -42,8 +42,8 @@ ax2.scatter(long, res/err_ang, color='royalblue', s=40)
 ax2.hlines(0, 0, 120, color='g', linewidth=3)
 ax2.set_xlim(0, 120)
 ax2.grid(True)
-ax2.set_xlabel('Ángulo de giro $[deg]$')
-ax2.set_ylabel('modelo $a + bx^{c}$')
+ax2.set_xlabel('Longitud $[cm]$')
+ax2.set_ylabel('Residuos normalizados del modelo')
 ax2.set_title('gráfico de residuos para el modelo $a + bx^{c}$')
 
 #---guardar------------------------------------------------------------
