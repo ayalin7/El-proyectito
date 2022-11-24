@@ -1,4 +1,4 @@
-from numpy import genfromtxt, mean, std, array, arange, linspace, diagonal, sin, cos
+from numpy import genfromtxt, mean, std, array, arange, linspace, diagonal, sin, cos, sqrt, radians
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 plt.style.use('classic')
@@ -23,22 +23,29 @@ ax1.set_xlabel('Longitud $[cm]$')
 ax1.set_ylabel('Ángulo de giro $[deg]$')
 
 #---modelo-------------------------------------------------------------
-def f(x, a, b, c, d): 
-	modelo = a * b*sin(x) + c*x**d
-	return modelo
+def f(x, a, b, c):
+	return a*x + b*sin(x*c)
 
 #---grafico-modelo-----------------------------------------------------
-pcurv, pcov = curve_fit(f, long, ang, sigma=1/err_ang, absolute_sigma=True)
+pcurv, pcov = curve_fit(f, long, ang, sigma=err_ang, absolute_sigma=True)
+
+sigma_a, sigma_b, sigma_c = sqrt(diagonal(pcov))
 
 longg = linspace(min(long)-10, max(long)+20, len(long)*20)
-ax1.plot(longg, f(longg, pcurv[0], pcurv[1], pcurv[2], pcurv[3]), color='g', label='modelo $a\sin(b)$', linewidth=2)
+ax1.plot(longg, f(longg, pcurv[0], pcurv[1], pcurv[2]), color='g', label='modelo $ax + b\sin(cx)$', linewidth=2)
+ax1.set_title("$\sigma_a = 5.07~[]$, "+"$\sigma_b = 301.34~[]$, "+"$\sigma_c = 0.04~[]$")
+ax1.legend(loc='lower right')
 
 #---grafico-residuos---------------------------------------------------
-res = ang - f(long, pcurv[0], pcurv[1], pcurv[2], pcurv[3]) 
-ax2.scatter(long, res)
+res = ang - f(long, pcurv[0], pcurv[1], pcurv[2]) 
+ax2.scatter(long, res/err_ang)
+ax2.hlines(0, 0, 120, color='g', linewidth=3)
+ax2.set_xlim(0, 120)
+ax2.grid(True)
+ax2.set_xlabel('Ángulo de giro $[deg]$')
+ax2.set_ylabel('modelo $ax + b\sin(cx)$')
+ax2.set_title('gráfico de residuos del modelo $ax + b\sin(cx)$')
 
 #---graficar-----------------------------------------------------------
-plt.title('error a = 2e-5, error b = 1e-9', size=11)
-plt.legend(loc='lower right')
 plt.savefig('grafico-modelo-asinb.pdf')
 
