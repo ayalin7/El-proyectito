@@ -12,7 +12,7 @@ long = arange(10,110,10)
 err_long = [0.05]*10
 
 #---subplots----------------------------------------------------------
-fig, (ax1, ax2) = plt.subplots(1, 2, constrained_layout=True, figsize=(10,5))
+fig, (ax1, ax2) = plt.subplots(1, 2, constrained_layout=True, figsize=(14,7))
 
 #---grafico-experimental----------------------------------------------
 ax1.errorbar(long, ang, xerr=err_long,  yerr=err_ang, marker='o', color='royalblue', label='datos experimentales')
