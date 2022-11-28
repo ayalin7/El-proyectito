@@ -31,14 +31,18 @@ pcurv, pcov = curve_fit(f, long, ang, sigma=err_ang, absolute_sigma=True)
 
 sigma_a, sigma_b, sigma_c = sqrt(diagonal(pcov))
 
+chi2 = sum(((1/(err_ang**2))*(long - f(ang, pcurv[0], pcurv[1], pcurv[2])))**2)
+
 longg = linspace(min(long)-10, max(long)+20, len(long)*20)
 ax1.plot(longg, f(longg, pcurv[0], pcurv[1], pcurv[2]), color='g', label='modelo $ax + b\sin(cx)$', linewidth=2)
-ax1.set_title("$\sigma_a = 5.07~[]$, "+"$\sigma_b = 301.34~[]$, "+"$\sigma_c = 0.04~[]$")
+ax1.set_title('Ajuste de curva con el modelo $ax + b \cdot \sin(cx)$')
 ax1.legend(loc='lower right')
 
+print(f"{chi2:.3}")
+print(f"{sigma_a:.3}", f"{sigma_b:.5}", f"{sigma_c:.1}")
 #---grafico-residuos---------------------------------------------------
 res = ang - f(long, pcurv[0], pcurv[1], pcurv[2]) 
-ax2.scatter(long, res/err_ang)
+ax2.scatter(long, res/err_ang, color='royalblue', s=40)
 ax2.hlines(0, 0, 120, color='g', linewidth=3)
 ax2.set_xlim(0, 120)
 ax2.grid(True)

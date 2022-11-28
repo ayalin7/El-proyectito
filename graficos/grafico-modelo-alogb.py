@@ -23,30 +23,33 @@ ax1.set_xlabel('Longitud $[cm]$')
 ax1.set_ylabel('Ángulo de giro $[deg]$')
 
 #---modelo-------------------------------------------------------------
-def f(x, a, b, c, d):
-	return a + b*log(x*c + d)
+def f(x, a, b, c):
+	return a + b*log(x + c)
 
 #---grafico-modelo-----------------------------------------------------
 pcurv, pcov = curve_fit(f, long, ang, sigma=err_ang, absolute_sigma=True)
 
-sigma_a, sigma_b, sigma_c, sigma_d = sqrt(diagonal(pcov))
+sigma_a, sigma_b, sigma_c = sqrt(diagonal(pcov))
+
+chi2 = sum(((1/(err_ang**2))*(long - f(ang, pcurv[0], pcurv[1], pcurv[2])))**2)
 
 longg = linspace(min(long), max(long), len(long)*20)
-ax1.plot(longg, f(longg, pcurv[0], pcurv[1], pcurv[2], pcurv[3]), color='g', label='modelo $a + b \cdot \log(xc + d)$', linewidth=2)
-ax1.set_title("$\sigma_a = $"+"$\sigma_b = $"+"$\sigma_c = $")
+ax1.plot(longg, f(longg, pcurv[0], pcurv[1], pcurv[2]), color='g', label='modelo $a + b \cdot \log(x + c)$', linewidth=2)
+ax1.set_title('Ajuste de curva con el modelo $a + b \cdot \log(x + c)$')
 
-print(sigma_a, sigma_b, sigma_c, sigma_d)
+print(f"{chi2:.3}")
+print(f"{sigma_a:03.1f}", f"{sigma_b:03.1f}", f"{sigma_c:.3}")
+
 #---grafico-residuos---------------------------------------------------
-res = ang - f(long, pcurv[0], pcurv[1], pcurv[2], pcurv[3])
+res = ang - f(long, pcurv[0], pcurv[1], pcurv[2])
 ax2.scatter(long, res/err_ang, color='royalblue', s=40)
 ax2.hlines(0, 0, 120, color='g', linewidth=3)
 ax2.set_xlim(0, 120)
 ax2.grid(True)
 ax2.set_xlabel('Longitud $[cm]$')
 ax2.set_ylabel('Residuos normalizados del modelo')
-ax2.set_title('gráfico de residuos para el modelo $a + b \cdot \log(xc + d)$')
+ax2.set_title('gráfico de residuos para el modelo $a + b \cdot \log(x + c)$')
 
 #---graficar-----------------------------------------------------------
-ax1.set_title('error a = 2e-5, error b = 1e-9', size=11)
 ax1.legend(loc='lower right')
 plt.savefig('grafico-modelo-alogb.pdf')

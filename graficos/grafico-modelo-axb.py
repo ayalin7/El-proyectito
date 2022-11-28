@@ -1,4 +1,4 @@
-from numpy import genfromtxt, mean, std, array, arange, linspace, diagonal, sqrt
+from numpy import genfromtxt, mean, std, array, arange, linspace, diagonal, sqrt, sum
 import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit, leastsq
 plt.style.use('classic')
@@ -31,10 +31,15 @@ pcurv, pcov = curve_fit(f, long, ang, sigma=err_ang, absolute_sigma=True)
 
 sigma_a, sigma_b, sigma_c = sqrt(diagonal(pcov))
 
+chi2 = sum(((1/(err_ang**2))*(long - f(ang, pcurv[0], pcurv[1], pcurv[2])))**2)
+
 longg = linspace(min(long), max(long), len(long)*20)
 ax1.plot(longg, f(longg, pcurv[0], pcurv[1], pcurv[2]), color='g', label='modelo $a + bx^{c}$', linewidth=2)
-ax1.set_title("$\sigma_a = 240.5~[deg]$, "+"$\sigma_b = 140.2~[]$, "+"$\sigma_c = 0.2~[]$")
+ax1.set_title('Ajuste de curva con el modelo $a + bx^{c}$')
 ax1.legend(loc='lower right')
+
+print(f"{chi2:.3}")
+print(f"{sigma_a:.4}", f"{sigma_b:03.1f}", f"{sigma_c:.1}")
 
 #---grafico-residuos---------------------------------------------------
 res = ang - f(long, pcurv[0], pcurv[1], pcurv[2])
