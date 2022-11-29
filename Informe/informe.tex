@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[11pt]{article}
 %\usepackage[spanish]{babel} 
 %\selectlanguage{english}  
 \usepackage[utf8]{inputenc} 
@@ -57,13 +57,20 @@ Nuestros objetivos a lograr con esta actividad de laboratorio son :
 Para el desarrollo de este informe haremos uso de las siguientes ecuaciones y términos físicos:
 
 \begin{itemize}
-    \item \textbf{Ángulo de rotación:} Medida del giro de una figura alrededor de un punto fijo.
-    \item \textbf{Fuerza:} Acción, esfuerzo o influencia que puede alterar el estado de movimiento o de reposo de cualquier cuerpo. El cual se puede medir con la siguiente formula dada por la segunda ley de newton :
-    \begin{equation*}
-       \vec F = m \cdot \vec a
-    \end{equation*}
-    \item \textbf{Aceleración Tangencial:}
-    \item \textbf{Fuerza Tangencial:}
+   
+    \item \textbf{Ángulo de rotación:} Medida del giro de una figura alrededor de un punto fijo.\cite{angulo}
+    
+    \item \textbf{Fuerza:} Acción, esfuerzo o influencia que puede alterar el estado de movimiento o de reposo de cualquier cuerpo. El cual se puede medir con la siguiente formula dada por la segunda ley de newton \cite{fundamentos} :
+        
+        \begin{equation}
+           \vec{F} = m \vec{a}
+           \label{eq:fuerza}
+        \end{equation} 
+    
+    \item \textbf{Aceleración Tangencial:} Magnitud vectorial que permite expresar el aumento de velocidad en una unidad de tiempo relacionado a un movimiento circular.
+    
+    \item \textbf{Fuerza Tangencial:} Fuerza que actúa sobre un cuerpo en un movimiento circular en la dirección tangencial de una trayectoria curva.
+
 \end{itemize}
 
 \section{Experimentación}
@@ -108,14 +115,29 @@ El procedimiento para la extracción de datos, en este caso el ángulo total de 
 Se implementaron dos marcos de referencia en la imagen obtenida, uno se ubico en la superficie en la que se hizo el experimento, la cual se encontraba en reposo, y el segundo se ubico en la cinta métrica, la cual era un sistema dinámico. Luego se comparo el ángulo entre los estados iniciales de cada sistema y el estado final de cada sistema, así obteniendo el ángulo total de giro de la cinta, esto se repitió para cada iteración de longitud.
 
 \section{Resultados y Análisis}
-A continuación, expondremos nuestros datos recopilados durante las mediciones. Comenzaremos mostrando el gráfico que se puede ver en la figura \ref{fig:datos}, en donde nos muestra la cantidad de vueltas expuestas según la distancia tomada, donde el eje de las abscisas corresponde a la longitud desde la cual soltamos la cinta métrica y el eje ordenado la cantidad de grados que este ha rotado. Este gráfico fue construido a partir de los datos que pueden ser encontrados en \href{https://github.com/ayalin7/El-proyectito/blob/main/graficos/datos/giro.txt}{este link}. \\
-A partir de esto podemos ver una clara tendencia al aumento de la cantidad de vueltas en función de la distancia desde la cual soltamos la cinta métrica lo cual hará sentido poniendo en comparativa la relación entre la segunda derivada de la longitud (correspondiente a la aceleración), la masa y la fuerza con la cual gira sobre si misma la cinta métrica. 
+A continuación, expondremos nuestros datos recopilados durante las mediciones, el archivo que contiene estos datos se encuentra en \href{https://github.com/ayalin7/El-proyectito/blob/main/graficos/datos/giro.txt}{este link}, donde cada columna representa los ángulos medidos en cada repetición según la longitud dada. Primero, graficaremos estos datos en la figura \ref{fig:datos}, la cual nos muestra la cantidad de vueltas expuestas según la distancia tomada, donde el eje de las abscisas corresponde a la longitud desde la cual soltamos la espiga de la cinta métrica y el eje ordenado la cantidad de grados que el cuerpo de este ha rotado. \\
 
-Para continuar con el análisis de este fenómeno, comenzamos con un trabajo computacional sobre los datos
+Tomando lo visto en la figura \ref{fig:datos} podemos ver la notoria tendencia hacia el incremento de numero de giros cada vez que aumentamos la distancia desde la cual soltamos la espiga de la cinta métrica. A partir de este gráfico, comenzamos un trabajo analítico de los datos recopilados, en el cual realizamos tres ajustes de curvas para poder asociar una función a la tendencia de crecimiento de nuestros datos. 
 
-% agregar lo de los diferentes ajutes y como hay una que tiene la mejor curva, en función del chi cuadrado que aumenta en consideración con los diversos coeficientes de las funciones del ajuste. 
+\medskip
 
-\begin{table}[]
+La figura \ref{fig:axb} nos muestra el primer ajuste que realizamos a partir de una función exponencial y la gráfica del residuo generado a partir de dicho ajuste. Al momento de calcular el $\chi^2$ obtenemos un valor de 24.4, el código que utilizamos para generar este gráfico se encuentra en \href{https://github.com/ayalin7/El-proyectito/blob/main/graficos/grafico-modelo-axb.py}{este link}.
+
+\medskip
+
+Continuando con los diversos ajustes realizados, en la figura \ref{fig:asinb} utilizamos una función que tiene asociada una función seno, la cual nos hacer creer a partir de un análisis visual de estar cercano a que la curva recorra todos los puntos expuestos por nuestros datos, lamentablemente, el efecto oscilatorio de la función seno provoca que el valor del $\chi^2$ crezca, haciéndose $\chi^2 = 43.9$ lo cual nos indica de que no estamos frente a un buen ajuste, considerando que el ajuste realizado con la función exponencial nos arrojo un valor mucho mas bajo para el $\chi^2$. \\ El código que utilizamos para generar este ajuste se puede encontrar en \href{https://github.com/ayalin7/El-proyectito/blob/main/graficos/grafico-modelo-asinb.py}{este link}.
+
+\medskip
+
+Finalmente, realizamos el ajuste mostrado en la figura \ref{} basado en una curva que utiliza una función polinomial de grado dos. El código con el cual graficamos y calculamos el $\chi^2$ se puede encontrar en \href{}. Podemos apreciar visualmente la similitud con el gráfico mostrado en la figura \ref{}, sin embargo, al momento de comparar los valores del $\chi^2$ vemos una disminución para este ultimo ajuste en el cual utilizamos la función cuadrática, indicándonos que de los tres ajustes que realizamos, este es el mejor. Hacemos notar que, 
+
+% agregar lo de los diferentes ajutes y como hay una que tiene la mejor curva, en función del chi cuadrado que aumenta en consideración con los diversos coeficientes de las funciones del ajuste. \ref{tabla}
+
+%SACA DEL HOYO DE LA FLO : el martin lo explica
+
+
+
+\begin{table}[ht]
 \centering
 \begin{tabular}{|c|c|c|}
 \hline
@@ -132,39 +154,45 @@ Para continuar con el análisis de este fenómeno, comenzamos con un trabajo com
  100 \scriptsize{$[\text{cm}]$} & $682.8^\circ$ & $\pm 75.5^\circ$  \\ \hline 
 \end{tabular}
 \caption{Promedio y desviación estándar de las iteraciones mediadas en cada longitud de tiro}
+\label{tabla}
 \end{table}
 
 \begin{figure}[ht]
     \centering
     \includegraphics[scale=0.5]{Informe/img/grafico-datos.pdf}
-    \caption{Gráfico formado a partir de los datos recopilados. El código de este gráfico se encuentra haciendo clic \href{https://github.com/ayalin7/El-proyectito/blob/main/graficos/grafico-datos.py}{aquí}.}
+    \caption{Gráfico formado a partir de los datos recopilados.}
     \label{fig:datos}
 \end{figure}
 
 \begin{figure}[ht]
     \centering
     \includegraphics[scale=0.5]{Informe/img/grafico-modelo-axb.pdf}
-    \caption{gráfico del modelo $a + bx^{c}$, con su respectivo análisis de residuos, donde su $\chi^2 = 24.4$. El código de este gráfico se encuentra haciendo clic \href{https://github.com/ayalin7/El-proyectito/blob/main/graficos/grafico-modelo-axb.py}{aquí}.}
+    \caption{Gráfico del modelo $a + bx^{c}$, con su respectivo análisis de residuos, donde $\chi^2 = 24.4$.}
     \label{fig:axb}
 \end{figure}
 
 \begin{figure}[ht]
     \centering
     \includegraphics[scale=0.5]{Informe/img/grafico-modelo-asinb.pdf}
-    \caption{gráfico del modelo $ax + b\sin(cx)$, con su respectivo análisis de residuos, donde su $\chi^2 = 43.9$. El código de este gráfico se encuentra haciendo clic \href{https://github.com/ayalin7/El-proyectito/blob/main/graficos/grafico-modelo-asinb.py}{aquí}.}
+    \caption{Gráfico del modelo $ax + b\sin(cx)$, con su respectivo análisis de residuos, donde $\chi^2 = 43.9$.}
     \label{fig:asinb}
 \end{figure}
 
 \begin{figure}[ht]
     \centering
     \includegraphics[scale=0.5]{Informe/img/grafico-modelo-alogb.pdf}
-    \caption{gráfico del modelo $a + b \cdot \log(x + c)$, con su respectivo análisis de residuos, $\chi^2 = 21.1$. El código de este gráfico se encuentra haciendo clic \href{https://github.com/ayalin7/El-proyectito/blob/main/graficos/grafico-modelo-alogb.py}{aquí}.}
+    \caption{Gráfico del modelo $a + b \cdot \log(x + c)$, con su respectivo análisis de residuos, $\chi^2 = 21.1$.}
     \label{fig:alogb}
 \end{figure}
 
 \section{Conclusión}
-Se concluye lo concluido por la conclusión que queda concluido lo que concluye finalmente.
+Como visto anteriormente en el análisis, los resultados a través de las tablas y los gráficos podemos concluir que el modelo que más se ajusta a la gráfica de los datos \ref{fig:datos} y la función $a + bx + cx^2$ donde a es nuestro coeficiente de 
+
+%Se concluye lo concluido por la conclusión que queda concluido lo que concluye finalmente.
+
+\pagebreak
 
 \bibliographystyle{apalike}
 \bibliography{Informe/referencias.bib}
+
 \end{document}
