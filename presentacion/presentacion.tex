@@ -15,3 +15,52 @@ This is some text in the first frame. This is some text in the first frame. This
 \end{frame}
 
 \end{document}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%% CONFIGURACION PRESENTACION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{beamer}
+\usetheme{Berlin}
+\usecolortheme{wolverine}
+\useinnertheme{rounded}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{items}[square] %podria ser [circle]
+\setbeamertemplate{footline}
+{%
+  \leavevmode%
+  \hbox{\begin{beamercolorbox}[wd=0\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fill,rightskip=.3cm]{author in head/foot}%
+    \usebeamerfont{author in head/foot} 
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.9\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle
+  \end{beamercolorbox}}%
+  \begin{beamercolorbox}[wd=.1\paperwidth,ht=2.5ex,dp=1ex,right]{date in head/foot}%
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+  \end{beamercolorbox}%
+  \vskip0pt%
+}
+\setbeamertemplate{sections/subsections in toc}[sections numbered]
+\setbeamertemplate{mini frames}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Information to be included in the title page:
+\title{Simulaci\'on Bidimensional de la Din\'amica de un Liquido Contenido en un Recipiente Rectangular}
+\author{Benjam\'in Ayala Baeza \\ Mart\'in Sepulveda Zu\~niga}
+\institute{Universidad de Concepci\'on}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+\frame{\tableofcontents}
+
+\section{Introduccion}
+\begin{frame}
+\frametitle{Motivaciones pa esta wea}
+aaaa
+\end{frame}
+
+
+
+\end{document} 
